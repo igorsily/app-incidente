@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Alert } from 'react-native';
 // import auth from '@react-native-firebase/auth';
-import { Heading, Icon, ScrollView, Stack, useTheme, VStack } from 'native-base';
-import { DeviceMobile, Envelope, HouseLine, IdentificationBadge, User } from 'phosphor-react-native';
+import { Heading, Icon, Radio, ScrollView, Stack, useTheme, VStack } from 'native-base';
+import { ChatCircleDots, DeviceMobile, Envelope, HouseLine, IdentificationBadge, User } from 'phosphor-react-native';
 
 
 import { Button } from '../components/Button';
@@ -15,6 +15,7 @@ export function Cadastro() {
 
   const [email, setEmail] = useState('84700130172');
   const [password, setPassword] = useState('123456');
+  const [radioButtonValue, setRadionButtonValue] = useState<string>('inquelino');
 
   const { colors } = useTheme();
 
@@ -52,9 +53,9 @@ export function Cadastro() {
   }
 
   return (
+    <ScrollView flex={1} bg="gray.600">
+      <VStack flex={1} alignItems="center" bg="gray.600" px={8} >
 
-    <VStack flex={1} alignItems="center" bg="gray.600" px={8} >
-      <ScrollView >
         <Stack direction="row" mb="2.5" mt="1.5" space={2}>
           <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
             <User size="32" color='white' />
@@ -115,74 +116,122 @@ export function Cadastro() {
         </Stack>
 
         <Stack direction="column" mb="2.5" mt="1.5" space={2} w="full">
-          <Stack direction="row" justifyContent="space-between" mb="2.5" mt="1.5" space={2}>
+          <Stack direction="row" justifyContent="space-between"  space={2}>
             <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
-             Proprietario
+              Proprietario
             </Heading>
             <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
-              Eu sou
+              <Radio.Group name="myRadioGroup"
+                onChange={nextValue => {
+                  setRadionButtonValue(nextValue);
+                }}
+                value={radioButtonValue}
+              >
+                <Radio value="proprietario"   colorScheme="green" my={1} accessibilityLabel="favorite number">
+                </Radio>
+              </Radio.Group>
             </Heading>
           </Stack>
-          <Input
-            mb={2}
-            placeholder="E-mail"
-            InputLeftElement={<Icon as={<Envelope color={colors.gray[300]} />} ml={4} />}
-            onChangeText={setEmail}
-          />
-          <Input
-            mb={2}
-            placeholder="CPF ou CNPJ"
-            InputLeftElement={<Icon as={<IdentificationBadge color={colors.gray[300]} />} ml={4} />}
-            secureTextEntry
-            onChangeText={setPassword}
-          />
 
-          <Input
-            mb={2}
-            placeholder="RG"
-            InputLeftElement={<Icon as={<IdentificationBadge color={colors.gray[300]} />} ml={4} />}
-            secureTextEntry
-            onChangeText={setPassword}
-          />
+          <Stack direction="row" justifyContent="space-between"   space={2}>
+            <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
+              Inquelino
+            </Heading>
+            <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
+              <Radio.Group name="myRadioGroup"
+                onChange={nextValue => {
+                  setRadionButtonValue(nextValue);
+                }}
+                value={radioButtonValue}
+              >
+                <Radio value="inquelino" my={1} accessibilityLabel="favorite number">
+                </Radio>
+              </Radio.Group>
+            </Heading>
+          </Stack>
+        
+        </Stack>
 
-          <Input
-            mb={2}
-            placeholder="Telefone"
-            InputLeftElement={<Icon as={<DeviceMobile color={colors.gray[300]} />} ml={4} />}
-            secureTextEntry
-            onChangeText={setPassword}
-          />
+        {/* ============================================= */}
+
+
+        <Stack direction="row" mb="2.5" mt="1.5" space={2}>
+          <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
+            <ChatCircleDots size="32" color='white' />
+          </Heading>
+          <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
+            Meio de Contato
+          </Heading>
+        </Stack>
+
+        <Stack direction="column" mb="2.5" mt="1.5" space={2} w="full">
+          <Stack direction="row" justifyContent="space-between"  space={2}>
+            <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
+              Email
+            </Heading>
+            <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
+              <Radio.Group name="myRadioGroup"
+                onChange={nextValue => {
+                  setRadionButtonValue(nextValue);
+                }}
+                value={radioButtonValue}
+              >
+                <Radio value="Email"   colorScheme="green" my={1} accessibilityLabel="favorite number">
+                </Radio>
+              </Radio.Group>
+            </Heading>
+          </Stack>
+
+          <Stack direction="row" justifyContent="space-between"   space={2}>
+            <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
+              Whatsapp
+            </Heading>
+            <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
+              <Radio.Group name="myRadioGroup"
+                onChange={nextValue => {
+                  setRadionButtonValue(nextValue);
+                }}
+                value={radioButtonValue}
+              >
+                <Radio value="whatsapp" my={1} accessibilityLabel="favorite number">
+                </Radio>
+              </Radio.Group>
+            </Heading>
+          </Stack>
+
+          <Stack direction="row" justifyContent="space-between"   space={2}>
+            <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
+              Telefone
+            </Heading>
+            <Heading color="gray.100" fontSize="xl" mt={2} mb={6}>
+              <Radio.Group name="myRadioGroup"
+                onChange={nextValue => {
+                  setRadionButtonValue(nextValue);
+                }}
+                value={radioButtonValue}
+              >
+                <Radio value="Telefone" my={1} accessibilityLabel="favorite number">
+                </Radio>
+              </Radio.Group>
+            </Heading>
+          </Stack>
+        
         </Stack>
 
         {/* ============================================= */}
 
 
 
-
         <Button
-          title="Entrar"
+          title="Proxima Etapa"
           w="full"
+          mb={8}
           onPress={handleSignIn}
           isLoading={loading}
         />
 
-        <Button
-          mt={3}
-          mb={3}
-          title="Esqueci minha senha"
-          w="full"
-          onPress={handleSignIn}
-          isLoading={loading}
-        />
-
-        <Button
-          title="Cadastre-se"
-          w="full"
-          onPress={handleSignIn}
-          isLoading={loading}
-        />
-      </ScrollView>
-    </VStack >
+      </VStack >
+    </ScrollView>
 
   )
 }
